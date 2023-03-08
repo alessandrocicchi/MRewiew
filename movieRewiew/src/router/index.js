@@ -5,7 +5,9 @@ import TVSeriesWiew from '../views/TVSeriesWiew.vue'
 import InfoTVSeriesWiew from '../components/InfoTVSeriesWiew.vue'
 import Page2Film from '../views/Page2Film.vue'
 import Info2Wiew from '../components/Info2Wiew.vue'
-import Rewiew from '../components/Rewiew.vue'
+import Container from '../views/Container.vue'
+import TVSeriesWiew2 from '../views/TVSeriesWiew2.vue'
+import InfoTVSeries2Wiew from '../components/InfoTVSeries2Wiew.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,10 +51,20 @@ const router = createRouter({
       component: Info2Wiew
     },
     {
-      path: '/rewiew',
-      name: 'rewiew',
-      component: Rewiew
-    }
+      path: '/film',
+      name: 'film',
+      component: Container
+    },
+    {
+      path: '/TVseries2',
+      name: 'TVseries2',
+      component: TVSeriesWiew2
+    },
+    {
+      path: '/infoTVSeries2/:id',
+      name: 'infoTVSeries2',
+      component: InfoTVSeries2Wiew
+    },
   ]
 })
 router.beforeEach(async to => {

@@ -77,7 +77,16 @@ export default{
         }
       }
     },
+    ReturnLanguage(){
 
+      for (let i = 0; i < this.films.length; i++) {
+        
+        if (this.id==this.films[i].id) {
+          
+          return this.films[i].original_language
+        }
+      }
+    }
   }
 }
 </script>
@@ -99,24 +108,29 @@ Voti totali: {{ film.vote_count }}
   </div>
   <div class="col-7">
     <div class="info">
-      <div class="row colonna" style="font-size: xx-large;">
+      <div class="row titolo" style="font-size: xx-large;">
         {{ ReturnTitle }}
       </div>
-      <div class="row colonna">
+      <div class="row colonna" style="font-family: cursive;">
         {{ ReturnOverwiew }}
       </div>
-      <div class="row colonna">
+      <div class="row visual">
         Visualizzazioni:{{ ReturnPopularity }}
       </div>
-      <div class="row colonna">
-        Media voti:{{ ReturnVoteAverage }}
+      <div class="row colonna" style="font-family: cursive;">
+        <div class="col-6">
+          Media voti:{{ ReturnVoteAverage }}
+        </div>
+        <div class="col-6">
+        Lingua originale: {{ ReturnLanguage }}
+        </div>
       </div>
-      <div class="row colonna">
+      <div class="row colonna" style="font-family: cursive;">
         <div class="col-6">
         Voti:{{ ReturnVoteCount }}<span class="material-symbols-outlined">thumb_up</span>
         </div>
         <div class="col-6">
-          <button class="btn btn-light" type="submit">LASCIA RECENSIONE</button>
+          <RouterLink to="/film2"><button class="btn btn-outline-light" type="submit">TORNA INDIETRO</button></RouterLink>
         </div>
       </div>
     </div>
@@ -142,8 +156,23 @@ Voti totali: {{ film.vote_count }}
  .colonna{
     font-size: large;
     font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: cursive;
     text-align: left;
+    margin-left: 20px;
+ }
+ .titolo{
+  font-size: large;
+  text-align: right;
+  color: red;
+  margin-left: 200px;
+  margin-top: 20px;
+}
+.visual{
+    font-size: large;
+    font-family: cursive;
+    text-align: center;
+    padding: 30px;
+    margin-left: 200px;
  }
 .material-symbols-outlined {
   color:white;

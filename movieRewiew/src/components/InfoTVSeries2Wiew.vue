@@ -10,7 +10,7 @@ export default{
   },
   mounted(){
         axios
-        .get('https://api.themoviedb.org/3//trending/tv/week?page=1&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
+        .get('https://api.themoviedb.org/3//trending/tv/week?page=2&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
         .then(response => this.series = response.data.results)
     },
   methods: {
@@ -106,10 +106,10 @@ Voti totali: {{ film.vote_count }}
 <div class="container tabella">
   <div class="row">
     <div class="col-5">
-    <img :src="ReturnImage" alt="Immagine" style="height: 835px;width: 550px;">
+    <img :src="ReturnImage" alt="Immagine" class="imgTV2">
   </div>
   <div class="col-7">
-    <div class="infoTV">
+    <div class="infoTV2">
       <div class="row titolo" style="font-size: xx-large;">
         {{ ReturnTitle }}
       </div>
@@ -132,7 +132,7 @@ Voti totali: {{ film.vote_count }}
         Voti:{{ ReturnVoteCount }}<span class="material-symbols-outlined">thumb_up</span>
         </div>
         <div class="col-6">
-          <RouterLink to="/TVseries"><button class="btn btn-outline-light" type="submit">TORNA INDIETRO</button></RouterLink>
+          <RouterLink to="/TVseries2"><button class="btn btn-outline-light" type="submit">TORNA INDIETRO</button></RouterLink>
         </div>
       </div>
     </div>
@@ -143,9 +143,13 @@ Voti totali: {{ film.vote_count }}
 </template> 
 <style>
 .tabella{
-  text-align: center;
+  font-family: cursive;
 }
-.infoTV{
+.imgTV2{
+  height: 830px;
+  width: 550px;
+}
+.infoTV2{
   border: solid 5px black;
   background-color: lightslategray;
     color: white;
@@ -153,7 +157,7 @@ Voti totali: {{ film.vote_count }}
     font-weight: bold;
     text-align: left;
     height: 835px;
-    width: 890px;
+    width: 800px;
  }
  .colonna{
     font-size: large;
@@ -168,6 +172,10 @@ Voti totali: {{ film.vote_count }}
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
+}
+.titolo{
+  font-size: large;
+  text-align: left;
 }
 
 </style>

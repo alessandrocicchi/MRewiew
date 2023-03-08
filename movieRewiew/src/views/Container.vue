@@ -23,13 +23,13 @@ export default{
   <br>
   <br>
   <br>
+  <br>
     <div class="container tabella">
     <div class="row" >
-          <div class="col-4">
-            
+        <div class="col-4">     
         </div>
         <div class="col-4" v-for="film in films" :key="film.id">
-          <div class="card" style="width: 27rem; height: 22rem;">
+          <div class="card" style="width: 430px; height: auto;">
             <img :src="ReturnImage(film)" class="card-img-top">
             <h5 class="card-title" style="font-weight: bold;">{{ film.title }}</h5>
             <h5 style="font-weight: bold;">Data di Rilascio: {{ film.release_date }}</h5>
@@ -45,7 +45,7 @@ export default{
       <ul class="pagination justify-content-center">
         <li class="page-item">
         </li>
-        <RouterLink to="/"><li class="page-item"><a class="page page-link">1</a></li></RouterLink>
+        <RouterLink to="/film"><li class="page-item"><a class="page page-link">1</a></li></RouterLink>
         <RouterLink to="/film2"><li class="page-item"><a class="page page-link" >2</a></li></RouterLink>
         
   </ul>

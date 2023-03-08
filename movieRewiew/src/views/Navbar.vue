@@ -1,26 +1,11 @@
 <script>
 
-export default{
-
-  data() {
-
-  },
-  computed: {
-
-  },
-  methods: {
-    cercaFilm(){
-      
-    }
-  }
-}
 </script>
-
 <template>
         <nav class="navbar navbar-expand-xl fixed-top" style="background-color: lightslategray;">
     <div class="container-fluid">
       <span class="material-symbols-outlined">movie_filter</span>
-      <a class="navbar-brand" href="#" style="color: black;font-weight: bold;">Movie Rewiew</a>
+      <a class="navbar-brand" href="#" style="color: black;">Movie Rewiew</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,16 +13,6 @@ export default{
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <RouterLink to="/"><a class="nav-link home" aria-current="page">Home</a></RouterLink>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: bold;font-size:large;color: black;">
-              Categorie
-            </a>
-            <ul class="dropdown-menu" style="font-weight: bold;background-color: white;">
-              <li><RouterLink to="/"><a class="dropdown-item menu" href="#">Film</a></RouterLink></li>
-              <li><RouterLink to="/TVseries"><a class="dropdown-item menu" href="#">Serie TV</a></RouterLink></li>
-              <li></li>
-            </ul>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -58,13 +33,12 @@ export default{
 }
 .home{
   color: white;
-  font-weight: bold;
-  font-size:large;
+  font-size:larger;
 }
 .home:hover{
   color: red;
   font-weight: bold;
-  font-size:large;
+  font-size:larger;
 }
 .material-symbols-outlined {
   color: red;

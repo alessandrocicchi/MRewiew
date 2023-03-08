@@ -48,7 +48,7 @@ export default{
       <ul class="pagination justify-content-center">
         <li class="page-item">
         </li>
-        <RouterLink to="/"><li class="page-item"><a class="page page-link">1</a></li></RouterLink>
+        <RouterLink to="/film"><li class="page-item"><a class="page page-link">1</a></li></RouterLink>
         <RouterLink to="/film2"><li class="page-item"><a class="page page-link" >2</a></li></RouterLink>
         
   </ul>
@@ -56,10 +56,6 @@ export default{
   </div>
   </template>
 <style>
-.tabella{
-  text-align: center;
-
-}
 .films {
   text-align: center;
 }
@@ -77,15 +73,18 @@ export default{
   color: white;
   border: 1px solid black;
   font-weight: bold;
-  width: 60px;
+  width: 55px;
   height: 45px;
+  text-align: center;
+  margin-right: 10px;
 }
 .page:hover{
   font-size: large;
   background-color: lightslategrey;
   color: white;
-  border: 1px solid black;
+  border: 1px solid lightslategrey;
   font-weight: bold;
+  text-align: center;
 }
 .btnCard{
   font-weight: bold;
