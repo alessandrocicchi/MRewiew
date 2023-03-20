@@ -4,21 +4,22 @@ import { RouterLink} from 'vue-router'
 export default{ 
   data() {
     return {
-      id: this.$route.params.id,
-      films: []
+      films: [],
+      pages: this.$route.params.page,
+      id: this.$route.params.id
     }
   },
-  mounted(){
-        axios
-        .get('https://api.themoviedb.org/3//trending/movie/week?page=1&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
-        .then(response => this.films = response.data.results)
-        
-    },
   methods: {
-    
+    CreatePage(){
+            axios
+            .get('https://api.themoviedb.org/3//trending/movie/week?page='+this.pages+'&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
+            .then(response => this.films = response.data.results)
+          }
   },
   computed: {
     ReturnImage(){
+
+      this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
 
@@ -31,6 +32,8 @@ export default{
     },
     ReturnTitle(){
 
+      this.CreatePage()
+
       for (let i = 0; i < this.films.length; i++) {
         
         if (this.id==this.films[i].id) {
@@ -40,6 +43,8 @@ export default{
       }
     },
     ReturnPopularity(){
+
+      this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
         
@@ -51,6 +56,8 @@ export default{
     },
     ReturnOverwiew(){
 
+      this.CreatePage()
+
       for (let i = 0; i < this.films.length; i++) {
         
         if (this.id==this.films[i].id) {
@@ -60,6 +67,8 @@ export default{
       }
     },
     ReturnVoteAverage(){
+
+      this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
         
@@ -71,6 +80,8 @@ export default{
     },
     ReturnVoteCount(){
 
+      this.CreatePage()
+
       for (let i = 0; i < this.films.length; i++) {
         
         if (this.id==this.films[i].id) {
@@ -81,6 +92,8 @@ export default{
     },
     ReturnLanguage(){
 
+      this.CreatePage()
+
       for (let i = 0; i < this.films.length; i++) {
         
         if (this.id==this.films[i].id) {
@@ -90,17 +103,17 @@ export default{
       }
     }
 
+  },
   }
-}
 </script>
 <template>
   <br>
   <br>
   <br>
-  <div class="container tabella">
+  <div class="container tabellaINFO">
   <div class="row">
     <div class="col-5">
-    <img :src="ReturnImage" alt="Immagine" style="height: 690px;width: 550px;">
+    <img :src="ReturnImage" alt="Immagine" style="height: 740px;width: 550px;">
   </div>
   <div class="col-7">
     <div class="infoF">
@@ -136,8 +149,10 @@ export default{
 <br>
 </template> 
 <style>
-.tabella{
+.tabellaINFO{
   font-family: cursive;
+  width: 2000px;
+  height: 1000px;
 }
 .infoF{
   border: solid 5px black;
@@ -146,7 +161,7 @@ export default{
     font-size: large;
     font-weight: bold;
     text-align: left;
-    height: 690px;
+    height: 740px;
     width: 800px;
  }
  .visual{
@@ -172,7 +187,7 @@ export default{
 }
 .titolo{
   font-size: large;
-  text-align: right;
+  text-align: left;
   color: red;
   margin-left: 100px;
   margin-top: 20px;

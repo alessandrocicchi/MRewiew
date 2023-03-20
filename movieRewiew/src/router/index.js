@@ -3,12 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import InfoWiew from '../components/InfoWiew.vue'
 import TVSeriesWiew from '../views/TVSeriesWiew.vue'
 import InfoTVSeriesWiew from '../components/InfoTVSeriesWiew.vue'
-import Page2Film from '../views/Page2Film.vue'
-import Info2Wiew from '../components/Info2Wiew.vue'
-import Container from '../views/Container.vue'
-import TVSeriesWiew2 from '../views/TVSeriesWiew2.vue'
-import InfoTVSeries2Wiew from '../components/InfoTVSeries2Wiew.vue'
-
+import Page1Film from '../views/Page1Film.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -26,7 +21,7 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/info/:id',
+      path: '/info/page=:page/:id',
       name: 'info',
       component: InfoWiew
     },
@@ -36,34 +31,14 @@ const router = createRouter({
       component: TVSeriesWiew
     },
     {
-      path: '/infoTVSeries/:id',
+      path: '/infoTVSeries/:page/:id',
       name: 'infoTVSeries',
       component: InfoTVSeriesWiew
     },
     {
-      path: '/film2',
-      name: 'film2',
-      component: Page2Film
-    },
-    {
-      path: '/info2/:id',
-      name: 'info2',
-      component: Info2Wiew
-    },
-    {
       path: '/film',
       name: 'film',
-      component: Container
-    },
-    {
-      path: '/TVseries2',
-      name: 'TVseries2',
-      component: TVSeriesWiew2
-    },
-    {
-      path: '/infoTVSeries2/:id',
-      name: 'infoTVSeries2',
-      component: InfoTVSeries2Wiew
+      component: Page1Film
     },
   ]
 })

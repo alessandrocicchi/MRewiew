@@ -1,64 +1,50 @@
 <script>
-
+import Card from '../components/Card.vue';
+export default{
+    data() {
+        return {
+            films: [],
+            pages: 1,
+            total: 50
+        };
+    },
+    methods: {
+        ReturnImage(film) {
+          return "https://image.tmdb.org/t/p/w500" + film.backdrop_path;
+        }
+    },
+    components: { Card }
+}
 </script>
 <template>
-        <nav class="navbar navbar-expand-xl fixed-top" style="background-color: lightslategray;">
-    <div class="container-fluid">
-      <span class="material-symbols-outlined">movie_filter</span>
-      <a class="navbar-brand" href="#" style="color: black;">Movie Rewiew</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <RouterLink to="/film"><a class="nav-link home" aria-current="page">Film</a></RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/TVseries"><a class="nav-link home" aria-current="page">Series TV</a></RouterLink>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search" style="font-size: medium;">
-          <button class="btn btn-outline-dark" type="submit" style="font-size: medium;" @click="cercaFilm">Cerca</button>
-        </form>
+  <br>
+  <div class="container tabella" v-for="pages in total">
+    <div class="row">
+      <div class="col-12">
+        <Card :page="pages"></Card>
       </div>
     </div>
-  </nav>
+  </div>
   </template>
 <style>
-.home{
+.tabella{
+  text-align: center;
+  font-family: cursive;
+}
+.films {
+  text-align: center;
+}
+.btnCard{
+  font-weight: bold;
+   height: 42px;
+   width: 422px;
+}
+.btnCard:hover{
   color: white;
-  font-size:larger;
-}
-.home:hover{
-  color: red;
-  font-weight: bold;
-  font-size:larger;
-}
-.home:after{
-  color: red;
-  font-weight: bold;
-  font-size: larger;
-}
-.material-symbols-outlined {
-  color: red;
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
-  
-}
-.menu{
-  font-weight: bold;
-  font-size:large;
-  background-color: white;
-  color: black;
-}
-.menu:hover{
   background-color: red;
-  color: white;
+  font-weight: bold;
+   height: 42px;
+   width: 422px;
 }
 </style>
 <!--this.films = response.data.results

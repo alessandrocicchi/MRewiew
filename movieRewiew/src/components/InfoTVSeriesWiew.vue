@@ -1,23 +1,25 @@
 <script>
 import axios from 'axios';
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink} from 'vue-router'
 export default{ 
   data() {
     return {
-      id: this.$route.params.id,
-      series: []
+      series: [],
+      pages: this.$route.params.page,
+      id: this.$route.params.id
     }
   },
-  mounted(){
-        axios
-        .get('https://api.themoviedb.org/3//trending/tv/week?page=1&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
-        .then(response => this.series = response.data.results)
-    },
   methods: {
-    
+    CreatePage(){
+          axios
+          .get('https://api.themoviedb.org/3//trending/tv/week?page='+this.pages+'&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
+          .then(response => this.series = response.data.results)
+          }
   },
   computed: {
     ReturnImage(){
+
+      this.CreatePage()
 
       for (let i = 0; i < this.series.length; i++) {
 
@@ -30,6 +32,8 @@ export default{
     },
     ReturnTitle(){
 
+      this.CreatePage()
+
       for (let i = 0; i < this.series.length; i++) {
         
         if (this.id==this.series[i].id) {
@@ -39,6 +43,8 @@ export default{
       }
     },
     ReturnPopularity(){
+
+      this.CreatePage()
 
       for (let i = 0; i < this.series.length; i++) {
         
@@ -50,6 +56,8 @@ export default{
     },
     ReturnOverwiew(){
 
+      this.CreatePage()
+
       for (let i = 0; i < this.series.length; i++) {
         
         if (this.id==this.series[i].id) {
@@ -59,6 +67,8 @@ export default{
       }
     },
     ReturnVoteAverage(){
+
+      this.CreatePage()
 
       for (let i = 0; i < this.series.length; i++) {
         
@@ -70,6 +80,8 @@ export default{
     },
     ReturnVoteCount(){
 
+      this.CreatePage()
+
       for (let i = 0; i < this.series.length; i++) {
         
         if (this.id==this.series[i].id) {
@@ -79,6 +91,8 @@ export default{
       }
     },
     ReturnLanguage(){
+
+      this.CreatePage()
 
       for (let i = 0; i < this.series.length; i++) {
         
@@ -90,26 +104,19 @@ export default{
     }
 
   }
-}
+  }
 </script>
 <template>
-  <!--
-<img :href="ReturnImage" alt="Immagine">
- film.popularity 
-Descrizione:{{ film.overview }}
-Media voti:{{ film.vote_average }} 
-Voti totali: {{ film.vote_count }}
-  -->
   <br>
   <br>
   <br>
-<div class="container tabella">
+  <div class="container tabellaINFO">
   <div class="row">
     <div class="col-5">
-    <img :src="ReturnImage" alt="Immagine" style="height: 835px;width: 550px;">
+    <img :src="ReturnImage" alt="Immagine" style="height: 880px;width: 550px;">
   </div>
   <div class="col-7">
-    <div class="infoTV">
+    <div class="infoF">
       <div class="row titolo" style="font-size: xx-large;">
         {{ ReturnTitle }}
       </div>
@@ -128,11 +135,11 @@ Voti totali: {{ film.vote_count }}
         </div>
       </div>
       <div class="row colonna" style="font-family: cursive;">
-        <div class="col-6" style="font-size: large;text-align: left;">
+        <div class="col-6">
         Voti:{{ ReturnVoteCount }}<span class="material-symbols-outlined">thumb_up</span>
         </div>
         <div class="col-6">
-          <RouterLink to="/TVseries"><button class="btn btn-outline-light" type="submit">TORNA INDIETRO</button></RouterLink>
+          <RouterLink to="/TVseries"><button class="btn btn-outline-light" type="submit" style="font-family: cursive;">TORNA INDIETRO</button></RouterLink>
         </div>
       </div>
     </div>
@@ -142,24 +149,33 @@ Voti totali: {{ film.vote_count }}
 <br>
 </template> 
 <style>
-.tabella{
-  text-align: center;
+.tabellaINFO{
+  font-family: cursive;
+  width: 2000px;
+  height: 2000px;
 }
-.infoTV{
+.infoF{
   border: solid 5px black;
   background-color: lightslategray;
     color: white;
     font-size: large;
     font-weight: bold;
     text-align: left;
-    height: 835px;
-    width: 890px;
+    height: 880px;
+    width: 800px;
+ }
+ .visual{
+    font-size: large;
+    font-family: cursive;
+    text-align: center;
+    padding: 30px;
  }
  .colonna{
     font-size: large;
     font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: cursive;
     text-align: left;
+    padding: 30px;
  }
 .material-symbols-outlined {
   color:white;
@@ -169,6 +185,13 @@ Voti totali: {{ film.vote_count }}
   'GRAD' 0,
   'opsz' 48
 }
+.titolo{
+  font-size: large;
+  text-align: left;
+  color: red;
+  margin-left: 100px;
+  margin-top: 20px;
+}
 
 </style>
 <!--mounted(){
@@ -176,3 +199,10 @@ Voti totali: {{ film.vote_count }}
         .get('https://api.themoviedb.org/3//trending/tv/week?page=1&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
         .then(response => this.series = response.data.results)
     },--> 
+    <!--
+<img :href="ReturnImage" alt="Immagine">
+ film.popularity 
+Descrizione:{{ film.overview }}
+Media voti:{{ film.vote_average }} 
+Voti totali: {{ film.vote_count }}
+  -->
