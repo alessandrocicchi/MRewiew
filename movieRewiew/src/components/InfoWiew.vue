@@ -3,16 +3,18 @@ import axios from 'axios';
 import { RouterLink} from 'vue-router'
 export default{ 
   data() {
+    const lang = localStorage.getItem("lang") || "it";
     return {
       films: [],
       pages: this.$route.params.page,
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      lang: lang
     }
   },
   methods: {
     CreatePage(){
             axios
-            .get('https://api.themoviedb.org/3//trending/movie/week?page='+this.pages+'&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
+            .get('https://api.themoviedb.org/3//trending/movie/week?page='+this.pages+'&api_key=6f9286d54de4891ea7a5c91779e09786&language='+ this.lang)
             .then(response => this.films = response.data.results)
           }
   },
@@ -101,45 +103,59 @@ export default{
           return this.films[i].original_language
         }
       }
+    },
+    ReturnDate(){
+
+      this.CreatePage()
+
+      for (let i = 0; i < this.films.length; i++) {
+        
+        if (this.id==this.films[i].id) {
+          
+          return this.films[i].release_date
+        }
+      }
     }
 
   },
   }
 </script>
 <template>
-  <br>
-  <br>
-  <br>
   <div class="container tabellaINFO">
   <div class="row">
     <div class="col-5">
-    <img :src="ReturnImage" alt="Immagine" style="height: 740px;width: 550px;">
+    <img :src="ReturnImage" alt="Immagine" style="height: 880px;width: 550px;">
   </div>
   <div class="col-7">
     <div class="infoF">
-      <div class="row titolo" style="font-size: xx-large;">
+      <div class="row titolo">
         {{ ReturnTitle }}
       </div>
-      <div class="row colonna" style="font-family: cursive;">
+      <div class="row colonna">
         {{ ReturnOverwiew }}
       </div>
       <div class="row visual">
-        Visualizzazioni:{{ ReturnPopularity }}
-      </div>
-      <div class="row colonna" style="font-family: cursive;">
         <div class="col-6">
-          Media voti:{{ ReturnVoteAverage }}
+          {{ $t("Visualizzazioni") }}:{{ ReturnPopularity }}
         </div>
         <div class="col-6">
-        Lingua originale: {{ ReturnLanguage }}
+          {{ $t("DataDiRilascio") }}: {{ ReturnDate }}
         </div>
       </div>
-      <div class="row colonna" style="font-family: cursive;">
+      <div class="row colonna">
         <div class="col-6">
-        Voti:{{ ReturnVoteCount }}<span class="material-symbols-outlined">thumb_up</span>
+          {{ $t("MediaVoti") }}:{{ ReturnVoteAverage }}
         </div>
         <div class="col-6">
-          <RouterLink to="/film"><button class="btn btn-outline-light" type="submit" style="font-family: cursive;">TORNA INDIETRO</button></RouterLink>
+          {{ $t("LinguaOriginale") }}: {{ ReturnLanguage }}
+        </div>
+      </div>
+      <div class="row colonna">
+        <div class="col-6">
+        {{ $t("Voti") }}:{{ ReturnVoteCount }}
+        </div>
+        <div class="col-6">
+          <RouterLink to="/"><button class="btn btn-outline-light" type="submit" style="font-family: cursive;">{{ $t("TornaIndietro") }}</button></RouterLink>
         </div>
       </div>
     </div>
@@ -150,9 +166,10 @@ export default{
 </template> 
 <style>
 .tabellaINFO{
+  text-align: center;
   font-family: cursive;
   width: 2000px;
-  height: 1000px;
+  height: 500px;
 }
 .infoF{
   border: solid 5px black;
@@ -167,7 +184,7 @@ export default{
  .visual{
     font-size: large;
     font-family: cursive;
-    text-align: center;
+    text-align: left;
     padding: 30px;
  }
  .colonna{
@@ -178,7 +195,7 @@ export default{
     padding: 30px;
  }
 .material-symbols-outlined {
-  color:white;
+  color:red;
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
@@ -186,23 +203,10 @@ export default{
   'opsz' 48
 }
 .titolo{
-  font-size: large;
+  font-size: xx-large;
   text-align: left;
   color: red;
   margin-left: 100px;
   margin-top: 20px;
 }
-
 </style>
-<!--mounted(){
-        axios
-        .get('https://api.themoviedb.org/3//trending/tv/week?page=1&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
-        .then(response => this.series = response.data.results)
-    },--> 
-    <!--
-<img :href="ReturnImage" alt="Immagine">
- film.popularity 
-Descrizione:{{ film.overview }}
-Media voti:{{ film.vote_average }} 
-Voti totali: {{ film.vote_count }}
-  -->

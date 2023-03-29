@@ -1,6 +1,7 @@
 <script setup>
 import {RouterView } from 'vue-router'
 import Navbar from './views/Navbar.vue'
+import Page1Film from './views/Page1Film.vue'
 </script>
 <template>
   <div style="font-family: cursive;">
@@ -10,7 +11,7 @@ import Navbar from './views/Navbar.vue'
     <br>
     <br>
     <br>
-  </div>    
+  </div>   
   <RouterView />
 </template>
 <style>

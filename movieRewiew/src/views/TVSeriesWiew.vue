@@ -2,10 +2,12 @@
 import TVCard from '../components/TVCard.vue';
 export default{
     data() {
+      const lang = localStorage.getItem("lang") || "it";
         return {
             series: [],
             pages: 1,
-            total: 100,
+            total: 50,
+            lang: lang
         };
     },
     mounted() {

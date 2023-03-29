@@ -1,11 +1,33 @@
 <script>
-
+import axios from 'axios';
+export default {
+  data() {
+      const lang = localStorage.getItem("lang") || "it";
+        return {
+            pages: 1,
+            searchName: "",
+            films: [],
+            lang: lang
+        }
+    },
+  methods: {
+    handleChange(event){
+      localStorage.setItem("lang", event.target.value);
+      window.location.reload();
+    },
+    CreatePage() {
+            axios
+                .get("https://api.themoviedb.org/3//trending/movie/week?page=1&api_key=6f9286d54de4891ea7a5c91779e09786&language=" + this.lang)
+                .then(response => this.films = response.data.results)
+        },
+  }
+}
 </script>
 <template>
-        <nav class="navbar navbar-expand-xl fixed-top" style="background-color: lightslategray;">
+  <nav class="navbar navbar-expand-xl fixed-top">
     <div class="container-fluid">
       <span class="material-symbols-outlined">movie_filter</span>
-      <a class="navbar-brand" href="#" style="color: black;">Movie Rewiew</a>
+      <a class="navbar-brand" href="#" style="color: red;">Movie Rewiew</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -18,17 +40,18 @@
             <RouterLink to="/TVseries"><a class="nav-link home" aria-current="page">Series TV</a></RouterLink>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search" style="font-size: medium;">
-          <button class="btn btn-outline-dark" type="submit" style="font-size: medium;" @click="cercaFilm">Cerca</button>
-        </form>
+        <select class="btn btn-outline-danger select" v-model="lang" @change="handleChange($event)">
+          <option value="it">italiano</option>
+          <option value="en">english</option>
+          <option value="fr">french</option>
+        </select>
       </div>
     </div>
   </nav>
-  </template>
+</template>
 <style>
 .home{
-  color: white;
+  color: black;
   font-size:larger;
 }
 .home:hover{
@@ -36,9 +59,12 @@
   font-weight: bold;
   font-size:larger;
 }
-.home:after{
+.language{
   color: red;
-  font-weight: bold;
+  font-size:larger;
+}
+.language:hover{
+  color: black;
   font-size: larger;
 }
 .material-symbols-outlined {
@@ -48,7 +74,6 @@
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
-  
 }
 .menu{
   font-weight: bold;
@@ -60,85 +85,12 @@
   background-color: red;
   color: white;
 }
+.select{
+  height: 38px;
+  width: 100px;
+  border-radius: 5px;
+}
 </style>
-<!--this.films = response.data.results
-<div v-for="post in posts" :key="post.id">
-    <h2>{{ post.id }} {{ post.title }}</h2>
-    <p>{{ post.body }}</p>
-  </div>
-  .get('https://jsonplaceholder.typicode.com/posts') da inserire nella funzione mounted()
-  data() {
-    return {
-      posts: []
-    }
-  },-->
-  <!--<section>
-    <form @submit.prevent="createPost">
-      <div>
-        <label for="userId">UserID:</label>
-        <input type="text" id="userId" v-model="postData.userId">
-      </div>
-      <div>
-        <label for="title">Title:</label>
-        <input type="text" id="title" v-model="postData.title">
-      </div>
-      <div>
-        <label for="body">Body:</label>
-        <textarea id="body" rows="6" cols="22" v-model="postData.body"></textarea>
-      </div>
-      <button>Create Post</button>
-    </form>
-  </section>
-  .post('https://jsonplaceholder.typicode.com/posts', this.postData)
-  data() {
-    return {
-      postData: { userid: '', title: '', body: '' }
-    }
-  },
-   
-  methods: {
-
-    createPost(){
-        axios
-        .post('https://jsonplaceholder.typicode.com/posts', this.postData) 
-        .then(response =>console.log(response))
-    }
-  }
-  -->
-  <!-- METODO PUT
-  mounted(){
-        axios
-        .put('https://jsonplaceholder.typicode.com/posts/1',{
-          id:'1',
-          userId: '1',
-          title: 'Article Title',
-          body: 'Article body'
-        }) 
-        .then(response =>console.log(response))
-  }-->
-  <!-- METODO PATCH
-    mounted(){
-        axios
-        .patch('https://jsonplaceholder.typicode.com/posts/1',{
-          title: 'Article Title',
-        }) 
-        .then(response =>console.log(response))
-  }-->
-
-  <!-- METODO DELETE
-  mounted(){
-        axios
-        .delete('https://jsonplaceholder.typicode.com/posts/1') 
-        .then(response =>console.log(response))
-  }-->
-
-  <!-- METODO ERROR
-  mounted(){
-        axios
-        .get('https://jsonplaceholder.typicode.com/wrong') 
-        .catch(error => console.log(error))
-  }-->
-
 
 
 

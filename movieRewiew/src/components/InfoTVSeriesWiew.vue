@@ -3,18 +3,20 @@ import axios from 'axios';
 import { RouterLink} from 'vue-router'
 export default{ 
   data() {
+    const lang = localStorage.getItem("lang") || "it";
     return {
       series: [],
       pages: this.$route.params.page,
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      lang: lang
     }
   },
   methods: {
     CreatePage(){
-          axios
-          .get('https://api.themoviedb.org/3//trending/tv/week?page='+this.pages+'&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
-          .then(response => this.series = response.data.results)
-          }
+      axios
+      .get('https://api.themoviedb.org/3//trending/tv/week?page='+this.pages+'&api_key=6f9286d54de4891ea7a5c91779e09786&language=' + this.lang)
+      .then(response => this.series = response.data.results)
+    }
   },
   computed: {
     ReturnImage(){
@@ -101,8 +103,19 @@ export default{
           return this.series[i].original_language
         }
       }
-    }
+    },
+    ReturnDate(){
 
+      this.CreatePage()
+
+      for (let i = 0; i < this.series.length; i++) {
+        
+        if (this.id==this.series[i].id) {
+          
+          return this.series[i].first_air_date
+        }
+      }
+    }
   }
   }
 </script>
@@ -124,22 +137,27 @@ export default{
         {{ ReturnOverwiew }}
       </div>
       <div class="row visual">
-        Visualizzazioni:{{ ReturnPopularity }}
-      </div>
-      <div class="row colonna" style="font-family: cursive;">
         <div class="col-6">
-          Media voti:{{ ReturnVoteAverage }}
+          {{ $t("Visualizzazioni") }}:{{ ReturnPopularity }}
         </div>
         <div class="col-6">
-        Lingua originale: {{ ReturnLanguage }}
+          {{ $t("DataDiRilascio") }}: {{ ReturnDate }}
         </div>
       </div>
       <div class="row colonna" style="font-family: cursive;">
         <div class="col-6">
-        Voti:{{ ReturnVoteCount }}<span class="material-symbols-outlined">thumb_up</span>
+          {{ $t("MediaVoti") }}:{{ ReturnVoteAverage }}
         </div>
         <div class="col-6">
-          <RouterLink to="/TVseries"><button class="btn btn-outline-light" type="submit" style="font-family: cursive;">TORNA INDIETRO</button></RouterLink>
+          {{ $t("LinguaOriginale") }}: {{ ReturnLanguage }}
+        </div>
+      </div>
+      <div class="row colonna" style="font-family: cursive;">
+        <div class="col-6">
+          {{ $t("Voti") }}:{{ ReturnVoteCount }}
+        </div>
+        <div class="col-6">
+          <RouterLink to="/TVseries"><button class="btn btn-outline-light" type="submit" style="font-family: cursive;">{{ $t("TornaIndietro") }}</button></RouterLink>
         </div>
       </div>
     </div>
@@ -149,11 +167,6 @@ export default{
 <br>
 </template> 
 <style>
-.tabellaINFO{
-  font-family: cursive;
-  width: 2000px;
-  height: 2000px;
-}
 .infoF{
   border: solid 5px black;
   background-color: lightslategray;
@@ -178,7 +191,7 @@ export default{
     padding: 30px;
  }
 .material-symbols-outlined {
-  color:white;
+  color:red;
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
@@ -192,17 +205,4 @@ export default{
   margin-left: 100px;
   margin-top: 20px;
 }
-
 </style>
-<!--mounted(){
-        axios
-        .get('https://api.themoviedb.org/3//trending/tv/week?page=1&api_key=6f9286d54de4891ea7a5c91779e09786&language=it')
-        .then(response => this.series = response.data.results)
-    },--> 
-    <!--
-<img :href="ReturnImage" alt="Immagine">
- film.popularity 
-Descrizione:{{ film.overview }}
-Media voti:{{ film.vote_average }} 
-Voti totali: {{ film.vote_count }}
-  -->
