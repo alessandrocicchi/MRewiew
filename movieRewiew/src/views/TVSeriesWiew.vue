@@ -6,7 +6,7 @@ export default{
         return {
             series: [],
             pages: 1,
-            total: 50,
+            total: 20,
             lang: lang
         };
     },
@@ -22,12 +22,10 @@ export default{
 </script>
 <template>
   <br>
-<div v-for="pages in total">
-  <div class="container tabella">
-    <div class="row" >
-      <div class="col-12">   
+  <div style="background-image: linear-gradient(to left, black, lightslategray);margin-left: -350px;padding-right: 1450px;margin-right: -340px;text-align: center;font-family: cursive;height: auto;">
+  <div class="container">
+    <div class="row" v-for="pages in total"> 
         <TVCard :page="pages"></TVCard>
-      </div>
     </div>
   </div>
 </div>
@@ -49,6 +47,7 @@ export default{
    width: 422px;
 }
 .btnCard:hover{
+  border: 1px solid red;
   color: white;
   background-color: red;
   font-weight: bold;

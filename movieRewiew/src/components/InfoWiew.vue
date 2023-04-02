@@ -20,7 +20,6 @@ export default{
   },
   computed: {
     ReturnImage(){
-
       this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
@@ -33,7 +32,6 @@ export default{
       }
     },
     ReturnTitle(){
-
       this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
@@ -45,7 +43,6 @@ export default{
       }
     },
     ReturnPopularity(){
-
       this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
@@ -57,7 +54,6 @@ export default{
       }
     },
     ReturnOverwiew(){
-
       this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
@@ -69,7 +65,6 @@ export default{
       }
     },
     ReturnVoteAverage(){
-
       this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
@@ -81,7 +76,6 @@ export default{
       }
     },
     ReturnVoteCount(){
-
       this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
@@ -93,7 +87,6 @@ export default{
       }
     },
     ReturnLanguage(){
-
       this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
@@ -105,7 +98,6 @@ export default{
       }
     },
     ReturnDate(){
-
       this.CreatePage()
 
       for (let i = 0; i < this.films.length; i++) {
@@ -116,17 +108,17 @@ export default{
         }
       }
     }
-
   },
   }
 </script>
 <template>
+  <br>
   <div class="container tabellaINFO">
   <div class="row">
-    <div class="col-5">
-    <img :src="ReturnImage" alt="Immagine" style="height: 880px;width: 550px;">
+    <div class="col-7">
+    <img :src="ReturnImage" alt="Immagine" style="height: 880px;width: 800px;text-align: left;margin-left: -20px;">
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <div class="infoF">
       <div class="row titolo">
         {{ ReturnTitle }}
@@ -139,7 +131,7 @@ export default{
           {{ $t("Visualizzazioni") }}:{{ ReturnPopularity }}
         </div>
         <div class="col-6">
-          {{ $t("DataDiRilascio") }}: {{ ReturnDate }}
+          {{ $t("DataDiRilascio") }}:{{ ReturnDate }}
         </div>
       </div>
       <div class="row colonna">
@@ -162,14 +154,12 @@ export default{
   </div>
   </div>
 </div>
-<br>
 </template> 
 <style>
 .tabellaINFO{
   text-align: center;
   font-family: cursive;
   width: 2000px;
-  height: 500px;
 }
 .infoF{
   border: solid 5px black;

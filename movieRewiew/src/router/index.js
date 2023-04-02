@@ -4,6 +4,7 @@ import InfoWiew from '../components/InfoWiew.vue'
 import TVSeriesWiew from '../views/TVSeriesWiew.vue'
 import InfoTVSeriesWiew from '../components/InfoTVSeriesWiew.vue'
 import Page1Film from '../views/Page1Film.vue'
+import Cards from '../components/Cards.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/film',
       name: 'film',
       component: Page1Film
+    },
+    {
+      path: '/:type',
+      name: 'cards',
+      component: Cards
     },
   ]
 })

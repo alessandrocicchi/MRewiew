@@ -5,49 +5,46 @@ export default{
       const lang = localStorage.getItem("lang") || "it";
         return {
             films: [],
-            total: 50,
+            total: 10,
             lang: lang,
         }
     },
-    methods: {
-        
+    props:{
+      type:{
+        type: Array
+      }
     },
-  computed: {
-    filteredFilms(){
-      this.CreatePage()
-      return this.films.filter(film => film.title.includes(this.searchName))
-    }
-  },
     components: { Card }
 }
 </script>
 <template>
-  <br>
-  <div class="container tabella" v-for="pages in total">
-    <div class="row">
+<div style="background-image: linear-gradient(to left, black, lightslategray);margin-left: -960px;padding-right: 1000px;margin-right: -340px;text-align: center;font-family: cursive;">
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row" v-for="pages in total" style="text-align: center;">
         <Card :page="pages"></Card>
     </div>
   </div>
+</div>
 </template>
 <style>
-.tabella{
-  text-align: center;
-  font-family: cursive;
-}
+
 .films {
   text-align: center;
 }
 .btnCard{
   font-weight: bold;
    height: 42px;
-   width: 422px;
+   width: 2000px;
 }
 .btnCard:hover{
   color: white;
   background-color: red;
   font-weight: bold;
    height: 42px;
-   width: 422px;
+   width: 2000px;
 }
 </style>
 

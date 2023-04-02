@@ -27,23 +27,23 @@ export default {
   <nav class="navbar navbar-expand-xl fixed-top">
     <div class="container-fluid">
       <span class="material-symbols-outlined">movie_filter</span>
-      <a class="navbar-brand" href="#" style="color: red;">Movie Rewiew</a>
+      <a class="navbar-brand" href="#" style="color: red;font-size: x-large;">Movie Rewiew</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <RouterLink to="/film"><a class="nav-link home" aria-current="page">Film</a></RouterLink>
+            <RouterLink to="/film"><a class="nav-link home" aria-current="page" style="font-size: x-large;">Film</a></RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink to="/TVseries"><a class="nav-link home" aria-current="page">Series TV</a></RouterLink>
           </li>
         </ul>
-        <select class="btn btn-outline-danger select" v-model="lang" @change="handleChange($event)">
-          <option value="it">italiano</option>
-          <option value="en">english</option>
-          <option value="fr">french</option>
+        <select class="btn btn-outline-danger select" v-model="lang" @change="handleChange($event)" style="width: 180px;height:45px;font-size: larger;">
+          <option value="it" style="font-size: larger">italiano</option>
+          <option value="en" style="font-size: larger">english</option>
+          <option value="fr" style="font-size: larger;">french</option>
         </select>
       </div>
     </div>
@@ -51,21 +51,12 @@ export default {
 </template>
 <style>
 .home{
-  color: black;
-  font-size:larger;
+  color: white;
+  font-size:x-large;
 }
 .home:hover{
   color: red;
   font-weight: bold;
-  font-size:larger;
-}
-.language{
-  color: red;
-  font-size:larger;
-}
-.language:hover{
-  color: black;
-  font-size: larger;
 }
 .material-symbols-outlined {
   color: red;
@@ -77,7 +68,6 @@ export default {
 }
 .menu{
   font-weight: bold;
-  font-size:large;
   background-color: white;
   color: black;
 }

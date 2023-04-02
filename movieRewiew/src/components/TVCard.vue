@@ -1,6 +1,5 @@
 <script>
 import axios from 'axios';
-
 export default{
     data(){
         const lang = localStorage.getItem("lang") || "it";
@@ -39,14 +38,13 @@ export default{
             }
             return this.series
         }
-        
     },
 }
 </script>
 <template>
     <form class="d-flex" role="search">
         <input class="form-control me-2" type="text" :placeholder="$t('Cerca')" aria-label="Search" v-model="SearchSerie" style="border-radius: 10px;">
-        <button class="btn btn-outline-dark" type="submit" style="font-size: medium;border-radius: 10px;" @onclick="FilteredSeries">{{$t('Cerca')}}</button>
+        <button class="btn btn-outline-light" type="submit" style="font-size: medium;border-radius: 10px;" @onclick="FilteredSeries">{{$t('Cerca')}}</button>
     </form>
     <br>
 <div v-for="serie in FilteredSeries" :key="serie.id">
