@@ -1,5 +1,4 @@
 <script>
-import axios from 'axios';
 import { RouterLink} from 'vue-router'
 export default{
     data(){
@@ -10,18 +9,28 @@ export default{
         }
     },
     props:{
-        film:{
-            type: Object,
+        films:{
+            type: Array,
             required: true
         },
         page:{
             type:Number,
             required:true
+        },
+        type:{
+            type: String,
+            required: true
         }
     },
     methods: {
         ReturnImage(film) {
             return "https://image.tmdb.org/t/p/w500" + film.backdrop_path;
+        },
+        ReturnTitle(film){
+            return film.title || film.name
+        },
+        ReturnDate(film){
+            return film.first_air_date || film.release_date
         }
     },
     computed: {
@@ -30,16 +39,14 @@ export default{
 }
 </script>
 <template>
-    
     <br>
-    <br>
-<div>
+<div v-for="film in films">
     <div class="card cardTV" style="width: 40rem; height: auto;">
         <img :src="ReturnImage(film)" class="card-img-top">
-        <h5 class="card-title">{{ film.title }}</h5>
-        <h5>{{ $t("DataDiRilascio") }}: {{ film.release_date }}</h5>
-        <router-link :to="{ name: 'info', params: { id: film.id } }"></router-link>
-        <button class="btn btn-light btnCard" type="submit" @click="$router.push({ name: 'info', params: { page: this.page ,id: film.id } })" style="font-weight: bold;height: 42px;width: 630px;">INFO</button>
+        <h5 class="card-title">{{ ReturnTitle(film) }}</h5>
+        <h5>{{ $t("DataDiRilascio") }}: {{ ReturnDate(film) }}</h5>
+        <router-link :to="{ name: 'info', params: { id: film.id, page: this.page, type: this.type } }"></router-link>
+        <button class="btn btn-light btnCard" type="submit" @click="$router.push({ name: 'info', params: { page: this.page ,id: film.id, type: this.type } })" style="font-weight: bold;height: 42px;width: 630px;">INFO</button>
     </div>  
 </div>
 </template>

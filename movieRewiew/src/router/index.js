@@ -22,7 +22,7 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/info/page=:page/:id',
+      path: '/info/:type/page=:page/:id',
       name: 'info',
       component: InfoWiew
     },

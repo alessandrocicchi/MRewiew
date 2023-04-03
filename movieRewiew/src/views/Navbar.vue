@@ -34,10 +34,10 @@ export default {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <RouterLink to="/film"><a class="nav-link home" aria-current="page" style="font-size: x-large;">Film</a></RouterLink>
+            <RouterLink :to="{ name: 'cards', params: { type: 'movie' } }"><a class="nav-link home" aria-current="page" style="font-size: x-large;">Film</a></RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink to="/TVseries"><a class="nav-link home" aria-current="page">Series TV</a></RouterLink>
+            <RouterLink :to="{ name: 'cards', params: { type: 'tv' } }"><a class="nav-link home" aria-current="page">Series TV</a></RouterLink>
           </li>
         </ul>
         <select class="btn btn-outline-danger select" v-model="lang" @change="handleChange($event)" style="width: 180px;height:45px;font-size: larger;">

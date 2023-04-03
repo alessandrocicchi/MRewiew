@@ -8,13 +8,14 @@ export default{
       films: [],
       pages: this.$route.params.page,
       id: this.$route.params.id,
+      type: this.$route.params.type,
       lang: lang
     }
   },
   methods: {
     CreatePage(){
             axios
-            .get('https://api.themoviedb.org/3//trending/movie/week?page='+this.pages+'&api_key=6f9286d54de4891ea7a5c91779e09786&language='+ this.lang)
+            .get('https://api.themoviedb.org/3//trending/'+this.type+'/week?page='+this.pages+'&api_key=6f9286d54de4891ea7a5c91779e09786&language='+ this.lang)
             .then(response => this.films = response.data.results)
           }
   },
@@ -38,7 +39,7 @@ export default{
         
         if (this.id==this.films[i].id) {
           
-          return this.films[i].title
+          return this.films[i].title || this.films[i].name
         }
       }
     },
@@ -104,7 +105,7 @@ export default{
         
         if (this.id==this.films[i].id) {
           
-          return this.films[i].release_date
+          return this.films[i].first_air_date || this.films[i].release_date
         }
       }
     }
@@ -113,13 +114,14 @@ export default{
 </script>
 <template>
   <br>
+<div style="background-image: linear-gradient(to left, black, lightslategray);">
   <div class="container tabellaINFO">
   <div class="row">
+    <div class="col-5">
+      <img :src="ReturnImage" alt="Immagine" style="height: 880px;width: 800px;margin-left: -200px;">
+    </div>
     <div class="col-7">
-    <img :src="ReturnImage" alt="Immagine" style="height: 880px;width: 800px;text-align: left;margin-left: -20px;">
-  </div>
-  <div class="col-5">
-    <div class="infoF">
+      <div class="infoF">
       <div class="row titolo">
         {{ ReturnTitle }}
       </div>
@@ -151,12 +153,14 @@ export default{
         </div>
       </div>
     </div>
+    </div>
   </div>
-  </div>
+</div>
 </div>
 </template> 
 <style>
 .tabellaINFO{
+  
   text-align: center;
   font-family: cursive;
   width: 2000px;
@@ -167,9 +171,8 @@ export default{
     color: white;
     font-size: large;
     font-weight: bold;
-    text-align: left;
     height: 740px;
-    width: 800px;
+    width: 1000px;
  }
  .visual{
     font-size: large;
