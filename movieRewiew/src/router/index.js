@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import InfoWiew from '../components/InfoWiew.vue'
+import Info from '../components/Info.vue'
 import TVSeriesWiew from '../views/TVSeriesWiew.vue'
-import InfoTVSeriesWiew from '../components/InfoTVSeriesWiew.vue'
+import SearchWiew from '../views/SearchWiew.vue'
 import Page1Film from '../views/Page1Film.vue'
 import Cards from '../components/Cards.vue'
 const router = createRouter({
@@ -24,7 +24,7 @@ const router = createRouter({
     {
       path: '/info/:type/page=:page/:id',
       name: 'info',
-      component: InfoWiew
+      component: Info
     },
     {
       path: '/TVseries',
@@ -32,9 +32,9 @@ const router = createRouter({
       component: TVSeriesWiew
     },
     {
-      path: '/infoTVSeries/:page/:id',
-      name: 'infoTVSeries',
-      component: InfoTVSeriesWiew
+      path: '/Search/:type',
+      name: 'search',
+      component: SearchWiew
     },
     {
       path: '/film',

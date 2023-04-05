@@ -6,6 +6,7 @@ export default{
         return{
             lang: lang,
             SearchFilm: '',
+            id: this.$route.params.id
         }
     },
     props:{
