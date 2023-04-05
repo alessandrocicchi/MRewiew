@@ -32,6 +32,8 @@ export default{
                 .get('https://api.themoviedb.org/3/search/'+this.type+'?api_key=512f81af17888b517a1b456fbce07689&query='+this.SearchFilm)
                 .then(response => this.films = response.data.results)
                 return this.films
+            }else if(this.SearchFilm.length == 0){
+                return []
             }
             return this.films
         }

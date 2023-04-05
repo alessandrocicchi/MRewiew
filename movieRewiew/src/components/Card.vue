@@ -40,7 +40,6 @@ export default{
 }
 </script>
 <template>
-    <br>
 <div v-for="film in films">
     <div class="card cardTV" style="width: 40rem; height: auto;">
         <img :src="ReturnImage(film)" class="card-img-top">
