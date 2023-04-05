@@ -62,13 +62,13 @@ export default{
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item" style="height: 50px;width: 25rem;text-align: center;" v-if="this.pages>1">
-                        <a class="page-link" @click="PreviousPage" aria-label="Previous" style="font-size: large;font-weight: bold;">
-                            <span aria-hidden="true">&laquo;</span>
+                        <a class="page-link" @click="PreviousPage" aria-label="Previous" style="background-color: transparent;color: red;width: 20rem;text-align: center;border: 0px;">
+                            <span aria-hidden="true" style="font-size: large;font-weight: bold;font-size: xx-large;">&laquo;</span>
                         </a>
                     </li>
-                    <li class="page-item" style="height: 50px;width: 25rem;text-align: center;">
-                        <a class="page-link" @click="NextPage" aria-label="Next">
-                            <span aria-hidden="true" style="font-size: large;font-weight: bold;">&raquo;</span>
+                    <li class="page-item" style="">
+                        <a class="page-link" @click="NextPage" aria-label="Next" style="background-color: transparent;color: red;width: 20rem;text-align: center;border: 0px;">
+                            <span aria-hidden="true" style="font-size: large;font-weight: bold;font-size: xx-large;">&raquo;</span>
                         </a>
                     </li>
                 </ul>
